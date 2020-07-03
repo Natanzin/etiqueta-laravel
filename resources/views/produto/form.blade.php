@@ -10,16 +10,16 @@
     @csrf
     <input type="hidden" name="id" id="id" value="{{$produto->id}}">
     <div class="form-group row">
-      <label for="name" class="col-sm-1 col-form-label text-center">Nome</label>
-      <div class="col-sm-11">
-        <input autofocus type="text" class="form-control" id="name" name="name" placeholder="Insira aqui o nome do produto!" value="{{$produto->name}}">
+      <label for="name" class="col-sm-2 col-form-label text-center">Nome</label>
+      <div class="col-sm-10">
+        <input required maxlength="30" autofocus type="text" class="form-control" id="name" name="name" placeholder="Max. 30 caracteres" value="{{$produto->name}}">
         <div id="mensagemNome" class="text-danger"></div>
       </div>
     </div>
     <div class="form-group row">
-      <label for="price" class="col-sm-1 col-form-label text-center">Preço</label>
-      <div class="col-sm-11">
-        <input type="text" class="form-control" id="price" name="price" placeholder="R$ 0,00" value="{{$produto->price}}">
+      <label for="price" class="col-sm-2 col-form-label text-center">Preço (R$)</label>
+      <div class="col-sm-10">
+        <input required type="text" class="form-control" id="price" name="price" value="{{$produto->price}}" placeholder="Somente números">
       </div>
     </div>
     <div class="text-center">
@@ -32,6 +32,10 @@
 
 @section('js')
 <script>
+
+  $(document).ready(function(){
+    $("#price").mask("999.999.990,00", {reverse : true});
+  })
 
   $('#name').change(function() {
     $.ajax({
@@ -46,6 +50,8 @@
       }
     })
   });
+
+  
 
 </script>
 @endsection

@@ -41,7 +41,7 @@ class ProdutoController extends Controller
         $produto->fill($request->all());
         $produto->save();
         //produto::create($request->all());
-        return redirect('/produtos');
+        return redirect('/produtos/create');
     }
 
     /**
